@@ -1,6 +1,10 @@
 #include QMK_KEYBOARD_H
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
+    if (!rgb_matrix_indicators_user()){
+        return false;
+    }
+
     // capslock led
 	if(host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
     	rgb_matrix_set_color(37, 237, 0, 0);
@@ -21,4 +25,6 @@ void rgb_matrix_indicators_user(void) {
 
 		rgb_matrix_set_color(40, 237, 0, 0);
 	}
+
+    return true;
 }
